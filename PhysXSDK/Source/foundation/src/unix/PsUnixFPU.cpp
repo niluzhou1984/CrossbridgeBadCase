@@ -43,7 +43,10 @@ physx::shdfnd::FPUGuard::FPUGuard()
 #if defined(PX_LINUX)
 	// need to explicitly disable exceptions because fesetenv does not modify
 	// the sse control word on 32bit linux (64bit is fine, but do it here just be sure)
+	#if defined(PX_CYGWIN)
+	#elif
 	fedisableexcept(FE_ALL_EXCEPT);
+	#endif
 #endif
 
 #endif
@@ -71,8 +74,11 @@ PX_FOUNDATION_API void physx::shdfnd::enableFPExceptions()
 #if defined PX_CROSSBRIDGE
 #pragma message "enableFPExceptions() is not implemented by AVM" 
 #elif defined PX_LINUX
-	feclearexcept(FE_ALL_EXCEPT);
-	feenableexcept(FE_INVALID|FE_DIVBYZERO|FE_OVERFLOW);	
+	#if defined PX_CYGWIN
+	#else
+		feclearexcept(FE_ALL_EXCEPT);
+		feenableexcept(FE_INVALID|FE_DIVBYZERO|FE_OVERFLOW);	
+	#endif
 #elif defined PX_OSX
 	// clear any pending exceptions
 	// (setting exception state flags cause exceptions on the first following fp operation)
@@ -89,7 +95,10 @@ PX_FOUNDATION_API void physx::shdfnd::disableFPExceptions()
 #if defined PX_CROSSBRIDGE
 #pragma message "disableFPExceptions() is not implemented by AVM" 
 #elif defined PX_LINUX
-	fedisableexcept(FE_ALL_EXCEPT);
+	#if defined PX_CYGWIN
+	#else
+		fedisableexcept(FE_ALL_EXCEPT);
+	#endif
 #elif defined PX_OSX
 	// clear any pending exceptions
 	// (setting exception state flags cause exceptions on the first following fp operation)

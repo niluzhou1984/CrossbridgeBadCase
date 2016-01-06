@@ -84,7 +84,9 @@ namespace
 	static void setTid(_ThreadImpl& threadImpl)
 	{
 		// query TID
-#if   defined(PX_CROSSBRIDGE)
+#if   defined(PX_CYGWIN)
+
+#elif   defined(PX_CROSSBRIDGE)
 		
 #elif defined(PX_PS4)
 	//AM: TODO: neither of the below are implemented
@@ -272,7 +274,9 @@ PxU32 ThreadImpl::setAffinityMask(PxU32 mask)
 
 	if (getThread(this)->state == _PxThreadStarted)
 	{
-#if   defined(PX_CROSSBRIDGE)
+#if   defined(PX_CYGWIN)
+
+#elif   defined(PX_CROSSBRIDGE)
 
 #elif defined(PX_PS4)
 		prevMask = setAffinityMaskPS4(getThread(this)->thread, mask);
