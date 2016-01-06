@@ -42,11 +42,11 @@ PhysXProfileSDK_debug_common_cflags    += -MMD
 PhysXProfileSDK_debug_common_cflags    += $(addprefix -D, $(PhysXProfileSDK_debug_defines))
 PhysXProfileSDK_debug_common_cflags    += $(addprefix -I, $(PhysXProfileSDK_debug_hpaths))
 PhysXProfileSDK_debug_common_cflags  += -m32
-PhysXProfileSDK_debug_common_cflags  += -Werror -m32 -fPIC -msse2 -mfpmath=sse -malign-double -ffast-math -fno-exceptions -fno-rtti -fvisibility=hidden -fvisibility-inlines-hidden
+PhysXProfileSDK_debug_common_cflags  +=  -m32 -fPIC -msse2 -mfpmath=sse -malign-double -ffast-math -fno-exceptions -fno-rtti -fvisibility=hidden -fvisibility-inlines-hidden
 PhysXProfileSDK_debug_common_cflags  += -Wall -Wextra -Wstrict-aliasing=2 -fdiagnostics-show-option
 PhysXProfileSDK_debug_common_cflags  += -Wno-long-long
-PhysXProfileSDK_debug_common_cflags  += -Wno-unknown-pragmas -Wno-invalid-offsetof -Wno-uninitialized -Wno-attributes -Wno-unused-local-typedefs
-PhysXProfileSDK_debug_common_cflags  += -Wno-unused-parameter -Wno-missing-field-initializers -Wno-ignored-qualifiers
+PhysXProfileSDK_debug_common_cflags  += -Wno-unknown-pragmas -Wno-invalid-offsetof -Wno-uninitialized -Wno-attributes 
+PhysXProfileSDK_debug_common_cflags  += -Wno-unused-parameter -Wno-missing-field-initializers 
 PhysXProfileSDK_debug_common_cflags  += -g3 -gdwarf-2
 PhysXProfileSDK_debug_cflags	:= $(PhysXProfileSDK_debug_common_cflags)
 PhysXProfileSDK_debug_cppflags	:= $(PhysXProfileSDK_debug_common_cflags)
@@ -127,11 +127,11 @@ PhysXProfileSDK_checked_common_cflags    += -MMD
 PhysXProfileSDK_checked_common_cflags    += $(addprefix -D, $(PhysXProfileSDK_checked_defines))
 PhysXProfileSDK_checked_common_cflags    += $(addprefix -I, $(PhysXProfileSDK_checked_hpaths))
 PhysXProfileSDK_checked_common_cflags  += -m32
-PhysXProfileSDK_checked_common_cflags  += -Werror -m32 -fPIC -msse2 -mfpmath=sse -malign-double -ffast-math -fno-exceptions -fno-rtti -fvisibility=hidden -fvisibility-inlines-hidden
+PhysXProfileSDK_checked_common_cflags  +=  -m32 -fPIC -msse2 -mfpmath=sse -malign-double -ffast-math -fno-exceptions -fno-rtti -fvisibility=hidden -fvisibility-inlines-hidden
 PhysXProfileSDK_checked_common_cflags  += -Wall -Wextra -Wstrict-aliasing=2 -fdiagnostics-show-option
 PhysXProfileSDK_checked_common_cflags  += -Wno-long-long
-PhysXProfileSDK_checked_common_cflags  += -Wno-unknown-pragmas -Wno-invalid-offsetof -Wno-uninitialized -Wno-attributes -Wno-unused-local-typedefs
-PhysXProfileSDK_checked_common_cflags  += -Wno-unused-parameter -Wno-missing-field-initializers -Wno-ignored-qualifiers
+PhysXProfileSDK_checked_common_cflags  += -Wno-unknown-pragmas -Wno-invalid-offsetof -Wno-uninitialized -Wno-attributes 
+PhysXProfileSDK_checked_common_cflags  += -Wno-unused-parameter -Wno-missing-field-initializers 
 PhysXProfileSDK_checked_common_cflags  += -g3 -gdwarf-2 -O3 -fno-strict-aliasing
 PhysXProfileSDK_checked_cflags	:= $(PhysXProfileSDK_checked_common_cflags)
 PhysXProfileSDK_checked_cppflags	:= $(PhysXProfileSDK_checked_common_cflags)
@@ -212,11 +212,11 @@ PhysXProfileSDK_profile_common_cflags    += -MMD
 PhysXProfileSDK_profile_common_cflags    += $(addprefix -D, $(PhysXProfileSDK_profile_defines))
 PhysXProfileSDK_profile_common_cflags    += $(addprefix -I, $(PhysXProfileSDK_profile_hpaths))
 PhysXProfileSDK_profile_common_cflags  += -m32
-PhysXProfileSDK_profile_common_cflags  += -Werror -m32 -fPIC -msse2 -mfpmath=sse -malign-double -ffast-math -fno-exceptions -fno-rtti -fvisibility=hidden -fvisibility-inlines-hidden
+PhysXProfileSDK_profile_common_cflags  +=  -m32 -fPIC -msse2 -mfpmath=sse -malign-double -ffast-math -fno-exceptions -fno-rtti -fvisibility=hidden -fvisibility-inlines-hidden
 PhysXProfileSDK_profile_common_cflags  += -Wall -Wextra -Wstrict-aliasing=2 -fdiagnostics-show-option
 PhysXProfileSDK_profile_common_cflags  += -Wno-long-long
-PhysXProfileSDK_profile_common_cflags  += -Wno-unknown-pragmas -Wno-invalid-offsetof -Wno-uninitialized -Wno-attributes -Wno-unused-local-typedefs
-PhysXProfileSDK_profile_common_cflags  += -Wno-unused-parameter -Wno-missing-field-initializers -Wno-ignored-qualifiers
+PhysXProfileSDK_profile_common_cflags  += -Wno-unknown-pragmas -Wno-invalid-offsetof -Wno-uninitialized -Wno-attributes 
+PhysXProfileSDK_profile_common_cflags  += -Wno-unused-parameter -Wno-missing-field-initializers 
 PhysXProfileSDK_profile_common_cflags  += -O3 -fno-strict-aliasing
 PhysXProfileSDK_profile_cflags	:= $(PhysXProfileSDK_profile_common_cflags)
 PhysXProfileSDK_profile_cppflags	:= $(PhysXProfileSDK_profile_common_cflags)
@@ -295,11 +295,11 @@ PhysXProfileSDK_release_common_cflags    += -MMD
 PhysXProfileSDK_release_common_cflags    += $(addprefix -D, $(PhysXProfileSDK_release_defines))
 PhysXProfileSDK_release_common_cflags    += $(addprefix -I, $(PhysXProfileSDK_release_hpaths))
 PhysXProfileSDK_release_common_cflags  += -m32
-PhysXProfileSDK_release_common_cflags  += -Werror -m32 -fPIC -msse2 -mfpmath=sse -malign-double -ffast-math -fno-exceptions -fno-rtti -fvisibility=hidden -fvisibility-inlines-hidden
+PhysXProfileSDK_release_common_cflags  +=  -m32 -fPIC -msse2 -mfpmath=sse -malign-double -ffast-math -fno-exceptions -fno-rtti -fvisibility=hidden -fvisibility-inlines-hidden
 PhysXProfileSDK_release_common_cflags  += -Wall -Wextra -Wstrict-aliasing=2 -fdiagnostics-show-option
 PhysXProfileSDK_release_common_cflags  += -Wno-long-long
-PhysXProfileSDK_release_common_cflags  += -Wno-unknown-pragmas -Wno-invalid-offsetof -Wno-uninitialized -Wno-attributes -Wno-unused-local-typedefs
-PhysXProfileSDK_release_common_cflags  += -Wno-unused-parameter -Wno-missing-field-initializers -Wno-ignored-qualifiers
+PhysXProfileSDK_release_common_cflags  += -Wno-unknown-pragmas -Wno-invalid-offsetof -Wno-uninitialized -Wno-attributes 
+PhysXProfileSDK_release_common_cflags  += -Wno-unused-parameter -Wno-missing-field-initializers 
 PhysXProfileSDK_release_common_cflags  += -O3 -fno-strict-aliasing
 PhysXProfileSDK_release_cflags	:= $(PhysXProfileSDK_release_common_cflags)
 PhysXProfileSDK_release_cppflags	:= $(PhysXProfileSDK_release_common_cflags)

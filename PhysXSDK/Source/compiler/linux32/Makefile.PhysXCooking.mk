@@ -80,12 +80,12 @@ PhysXCooking_release_common_cflags    += -MMD
 PhysXCooking_release_common_cflags    += $(addprefix -D, $(PhysXCooking_release_defines))
 PhysXCooking_release_common_cflags    += $(addprefix -I, $(PhysXCooking_release_hpaths))
 PhysXCooking_release_common_cflags  += -m32
-PhysXCooking_release_common_cflags  += -Werror -m32 -fPIC -msse2 -mfpmath=sse -malign-double -ffast-math -fno-exceptions -fno-rtti -fvisibility=hidden -fvisibility-inlines-hidden
+PhysXCooking_release_common_cflags  +=  -m32 -fPIC -msse2 -mfpmath=sse -malign-double -ffast-math -fno-exceptions -fno-rtti -fvisibility=hidden -fvisibility-inlines-hidden
 PhysXCooking_release_common_cflags  += -Wall -Wextra -Wstrict-aliasing=2 -fdiagnostics-show-option
 PhysXCooking_release_common_cflags  += -Wno-long-long
-PhysXCooking_release_common_cflags  += -Wno-unknown-pragmas -Wno-invalid-offsetof -Wno-uninitialized -Wno-attributes -Wno-unused-local-typedefs
-PhysXCooking_release_common_cflags  += -Wno-unused-parameter -Wno-missing-field-initializers -Wno-ignored-qualifiers
-PhysXCooking_release_common_cflags  += -O3 -fno-strict-aliasing
+PhysXCooking_release_common_cflags  += -Wno-unknown-pragmas -Wno-invalid-offsetof -Wno-uninitialized -Wno-attributes 
+PhysXCooking_release_common_cflags  += -Wno-unused-parameter -Wno-missing-field-initializers 
+PhysXCooking_release_common_cflags  += -O3 -fno-strict-aliasing 
 PhysXCooking_release_cflags	:= $(PhysXCooking_release_common_cflags)
 PhysXCooking_release_cppflags	:= $(PhysXCooking_release_common_cflags)
 PhysXCooking_release_lflags    := $(PhysXCooking_custom_lflags)
@@ -98,7 +98,7 @@ PhysXCooking_release_cpp_o    = $(addprefix $(PhysXCooking_release_objsdir)/, $(
 PhysXCooking_release_cc_o    = $(addprefix $(PhysXCooking_release_objsdir)/, $(subst ./, , $(subst ../, , $(patsubst %.cc, %.cc.o, $(PhysXCooking_ccfiles)))))
 PhysXCooking_release_c_o      = $(addprefix $(PhysXCooking_release_objsdir)/, $(subst ./, , $(subst ../, , $(patsubst %.c, %.c.o, $(PhysXCooking_cfiles)))))
 PhysXCooking_release_obj      = $(PhysXCooking_release_cpp_o) $(PhysXCooking_release_cc_o) $(PhysXCooking_release_c_o)
-PhysXCooking_release_bin      := ./../../../Bin/linux32/libPhysX3Cooking_x86.so
+PhysXCooking_release_bin      := ./../../../Bin/linux32/libPhysX3Cooking_x86.a
 
 clean_PhysXCooking_release: 
 	@$(ECHO) clean PhysXCooking release
@@ -112,8 +112,10 @@ mainbuild_PhysXCooking_release: prebuild_PhysXCooking_release $(PhysXCooking_rel
 prebuild_PhysXCooking_release:
 
 $(PhysXCooking_release_bin): $(PhysXCooking_release_obj) build_PhysXCommon_release build_PhysXExtensions_release 
-	mkdir -p `dirname ./../../../Bin/linux32/libPhysX3Cooking_x86.so`
-	$(CXX) -shared $(PhysXCooking_release_obj) $(PhysXCooking_release_lflags) -lc -o $@ 
+	mkdir -p `dirname ./../../../Bin/linux32/libPhysX3Cooking_x86.a`
+	$(ECHO) "$(PhysXCooking_release_lflags)" "$(PhysXCooking_release_obj)"
+	#$(CXX) -shared $(PhysXCooking_release_obj) $(PhysXCooking_release_lflags) -lc -o $@ 
+	@$(AR) rcs $(PhysXCooking_release_bin) $(PhysXCooking_release_obj)
 	$(ECHO) building $@ complete!
 
 PhysXCooking_release_DEPDIR = $(dir $(@))/$(*F)
@@ -194,11 +196,11 @@ PhysXCooking_debug_common_cflags    += -MMD
 PhysXCooking_debug_common_cflags    += $(addprefix -D, $(PhysXCooking_debug_defines))
 PhysXCooking_debug_common_cflags    += $(addprefix -I, $(PhysXCooking_debug_hpaths))
 PhysXCooking_debug_common_cflags  += -m32
-PhysXCooking_debug_common_cflags  += -Werror -m32 -fPIC -msse2 -mfpmath=sse -malign-double -ffast-math -fno-exceptions -fno-rtti -fvisibility=hidden -fvisibility-inlines-hidden
+PhysXCooking_debug_common_cflags  +=  -m32 -fPIC -msse2 -mfpmath=sse -malign-double -ffast-math -fno-exceptions -fno-rtti -fvisibility=hidden -fvisibility-inlines-hidden
 PhysXCooking_debug_common_cflags  += -Wall -Wextra -Wstrict-aliasing=2 -fdiagnostics-show-option
 PhysXCooking_debug_common_cflags  += -Wno-long-long
-PhysXCooking_debug_common_cflags  += -Wno-unknown-pragmas -Wno-invalid-offsetof -Wno-uninitialized -Wno-attributes -Wno-unused-local-typedefs
-PhysXCooking_debug_common_cflags  += -Wno-unused-parameter -Wno-missing-field-initializers -Wno-ignored-qualifiers
+PhysXCooking_debug_common_cflags  += -Wno-unknown-pragmas -Wno-invalid-offsetof -Wno-uninitialized -Wno-attributes 
+PhysXCooking_debug_common_cflags  += -Wno-unused-parameter -Wno-missing-field-initializers 
 PhysXCooking_debug_common_cflags  += -g3 -gdwarf-2
 PhysXCooking_debug_cflags	:= $(PhysXCooking_debug_common_cflags)
 PhysXCooking_debug_cppflags	:= $(PhysXCooking_debug_common_cflags)
@@ -212,7 +214,7 @@ PhysXCooking_debug_cpp_o    = $(addprefix $(PhysXCooking_debug_objsdir)/, $(subs
 PhysXCooking_debug_cc_o    = $(addprefix $(PhysXCooking_debug_objsdir)/, $(subst ./, , $(subst ../, , $(patsubst %.cc, %.cc.o, $(PhysXCooking_ccfiles)))))
 PhysXCooking_debug_c_o      = $(addprefix $(PhysXCooking_debug_objsdir)/, $(subst ./, , $(subst ../, , $(patsubst %.c, %.c.o, $(PhysXCooking_cfiles)))))
 PhysXCooking_debug_obj      = $(PhysXCooking_debug_cpp_o) $(PhysXCooking_debug_cc_o) $(PhysXCooking_debug_c_o)
-PhysXCooking_debug_bin      := ./../../../Bin/linux32/libPhysX3CookingDEBUG_x86.so
+PhysXCooking_debug_bin      := ./../../../Bin/linux32/libPhysX3CookingDEBUG_x86.dll
 
 clean_PhysXCooking_debug: 
 	@$(ECHO) clean PhysXCooking debug
@@ -226,7 +228,7 @@ mainbuild_PhysXCooking_debug: prebuild_PhysXCooking_debug $(PhysXCooking_debug_b
 prebuild_PhysXCooking_debug:
 
 $(PhysXCooking_debug_bin): $(PhysXCooking_debug_obj) build_PhysXCommon_debug build_PhysXExtensions_debug 
-	mkdir -p `dirname ./../../../Bin/linux32/libPhysX3CookingDEBUG_x86.so`
+	mkdir -p `dirname ./../../../Bin/linux32/libPhysX3CookingDEBUG_x86.dll`
 	$(CXX) -shared $(PhysXCooking_debug_obj) $(PhysXCooking_debug_lflags) -lc -o $@ 
 	$(ECHO) building $@ complete!
 
@@ -307,11 +309,11 @@ PhysXCooking_checked_common_cflags    += -MMD
 PhysXCooking_checked_common_cflags    += $(addprefix -D, $(PhysXCooking_checked_defines))
 PhysXCooking_checked_common_cflags    += $(addprefix -I, $(PhysXCooking_checked_hpaths))
 PhysXCooking_checked_common_cflags  += -m32
-PhysXCooking_checked_common_cflags  += -Werror -m32 -fPIC -msse2 -mfpmath=sse -malign-double -ffast-math -fno-exceptions -fno-rtti -fvisibility=hidden -fvisibility-inlines-hidden
+PhysXCooking_checked_common_cflags  +=  -m32 -fPIC -msse2 -mfpmath=sse -malign-double -ffast-math -fno-exceptions -fno-rtti -fvisibility=hidden -fvisibility-inlines-hidden
 PhysXCooking_checked_common_cflags  += -Wall -Wextra -Wstrict-aliasing=2 -fdiagnostics-show-option
 PhysXCooking_checked_common_cflags  += -Wno-long-long
-PhysXCooking_checked_common_cflags  += -Wno-unknown-pragmas -Wno-invalid-offsetof -Wno-uninitialized -Wno-attributes -Wno-unused-local-typedefs
-PhysXCooking_checked_common_cflags  += -Wno-unused-parameter -Wno-missing-field-initializers -Wno-ignored-qualifiers
+PhysXCooking_checked_common_cflags  += -Wno-unknown-pragmas -Wno-invalid-offsetof -Wno-uninitialized -Wno-attributes 
+PhysXCooking_checked_common_cflags  += -Wno-unused-parameter -Wno-missing-field-initializers 
 PhysXCooking_checked_common_cflags  += -g3 -gdwarf-2 -O3 -fno-strict-aliasing
 PhysXCooking_checked_cflags	:= $(PhysXCooking_checked_common_cflags)
 PhysXCooking_checked_cppflags	:= $(PhysXCooking_checked_common_cflags)
@@ -325,7 +327,7 @@ PhysXCooking_checked_cpp_o    = $(addprefix $(PhysXCooking_checked_objsdir)/, $(
 PhysXCooking_checked_cc_o    = $(addprefix $(PhysXCooking_checked_objsdir)/, $(subst ./, , $(subst ../, , $(patsubst %.cc, %.cc.o, $(PhysXCooking_ccfiles)))))
 PhysXCooking_checked_c_o      = $(addprefix $(PhysXCooking_checked_objsdir)/, $(subst ./, , $(subst ../, , $(patsubst %.c, %.c.o, $(PhysXCooking_cfiles)))))
 PhysXCooking_checked_obj      = $(PhysXCooking_checked_cpp_o) $(PhysXCooking_checked_cc_o) $(PhysXCooking_checked_c_o)
-PhysXCooking_checked_bin      := ./../../../Bin/linux32/libPhysX3CookingCHECKED_x86.so
+PhysXCooking_checked_bin      := ./../../../Bin/linux32/libPhysX3CookingCHECKED_x86.dll
 
 clean_PhysXCooking_checked: 
 	@$(ECHO) clean PhysXCooking checked
@@ -339,7 +341,7 @@ mainbuild_PhysXCooking_checked: prebuild_PhysXCooking_checked $(PhysXCooking_che
 prebuild_PhysXCooking_checked:
 
 $(PhysXCooking_checked_bin): $(PhysXCooking_checked_obj) build_PhysXCommon_checked build_PhysXExtensions_checked 
-	mkdir -p `dirname ./../../../Bin/linux32/libPhysX3CookingCHECKED_x86.so`
+	mkdir -p `dirname ./../../../Bin/linux32/libPhysX3CookingCHECKED_x86.dll`
 	$(CXX) -shared $(PhysXCooking_checked_obj) $(PhysXCooking_checked_lflags) -lc -o $@ 
 	$(ECHO) building $@ complete!
 
@@ -420,11 +422,11 @@ PhysXCooking_profile_common_cflags    += -MMD
 PhysXCooking_profile_common_cflags    += $(addprefix -D, $(PhysXCooking_profile_defines))
 PhysXCooking_profile_common_cflags    += $(addprefix -I, $(PhysXCooking_profile_hpaths))
 PhysXCooking_profile_common_cflags  += -m32
-PhysXCooking_profile_common_cflags  += -Werror -m32 -fPIC -msse2 -mfpmath=sse -malign-double -ffast-math -fno-exceptions -fno-rtti -fvisibility=hidden -fvisibility-inlines-hidden
+PhysXCooking_profile_common_cflags  +=  -m32 -fPIC -msse2 -mfpmath=sse -malign-double -ffast-math -fno-exceptions -fno-rtti -fvisibility=hidden -fvisibility-inlines-hidden
 PhysXCooking_profile_common_cflags  += -Wall -Wextra -Wstrict-aliasing=2 -fdiagnostics-show-option
 PhysXCooking_profile_common_cflags  += -Wno-long-long
-PhysXCooking_profile_common_cflags  += -Wno-unknown-pragmas -Wno-invalid-offsetof -Wno-uninitialized -Wno-attributes -Wno-unused-local-typedefs
-PhysXCooking_profile_common_cflags  += -Wno-unused-parameter -Wno-missing-field-initializers -Wno-ignored-qualifiers
+PhysXCooking_profile_common_cflags  += -Wno-unknown-pragmas -Wno-invalid-offsetof -Wno-uninitialized -Wno-attributes 
+PhysXCooking_profile_common_cflags  += -Wno-unused-parameter -Wno-missing-field-initializers 
 PhysXCooking_profile_common_cflags  += -O3 -fno-strict-aliasing
 PhysXCooking_profile_cflags	:= $(PhysXCooking_profile_common_cflags)
 PhysXCooking_profile_cppflags	:= $(PhysXCooking_profile_common_cflags)
@@ -438,7 +440,7 @@ PhysXCooking_profile_cpp_o    = $(addprefix $(PhysXCooking_profile_objsdir)/, $(
 PhysXCooking_profile_cc_o    = $(addprefix $(PhysXCooking_profile_objsdir)/, $(subst ./, , $(subst ../, , $(patsubst %.cc, %.cc.o, $(PhysXCooking_ccfiles)))))
 PhysXCooking_profile_c_o      = $(addprefix $(PhysXCooking_profile_objsdir)/, $(subst ./, , $(subst ../, , $(patsubst %.c, %.c.o, $(PhysXCooking_cfiles)))))
 PhysXCooking_profile_obj      = $(PhysXCooking_profile_cpp_o) $(PhysXCooking_profile_cc_o) $(PhysXCooking_profile_c_o)
-PhysXCooking_profile_bin      := ./../../../Bin/linux32/libPhysX3CookingPROFILE_x86.so
+PhysXCooking_profile_bin      := ./../../../Bin/linux32/libPhysX3CookingPROFILE_x86.dll
 
 clean_PhysXCooking_profile: 
 	@$(ECHO) clean PhysXCooking profile
@@ -452,7 +454,7 @@ mainbuild_PhysXCooking_profile: prebuild_PhysXCooking_profile $(PhysXCooking_pro
 prebuild_PhysXCooking_profile:
 
 $(PhysXCooking_profile_bin): $(PhysXCooking_profile_obj) build_PhysXCommon_profile build_PhysXExtensions_profile 
-	mkdir -p `dirname ./../../../Bin/linux32/libPhysX3CookingPROFILE_x86.so`
+	mkdir -p `dirname ./../../../Bin/linux32/libPhysX3CookingPROFILE_x86.dll`
 	$(CXX) -shared $(PhysXCooking_profile_obj) $(PhysXCooking_profile_lflags) -lc -o $@ 
 	$(ECHO) building $@ complete!
 

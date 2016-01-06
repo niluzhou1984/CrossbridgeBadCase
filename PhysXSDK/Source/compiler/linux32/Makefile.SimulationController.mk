@@ -125,12 +125,12 @@ SimulationController_debug_common_cflags    += -MMD
 SimulationController_debug_common_cflags    += $(addprefix -D, $(SimulationController_debug_defines))
 SimulationController_debug_common_cflags    += $(addprefix -I, $(SimulationController_debug_hpaths))
 SimulationController_debug_common_cflags  += -m32
-SimulationController_debug_common_cflags  += -Werror -m32 -fPIC -msse2 -mfpmath=sse -malign-double -ffast-math -fno-exceptions -fno-rtti -fvisibility=hidden -fvisibility-inlines-hidden
+SimulationController_debug_common_cflags  +=  -m32 -fPIC -msse2 -mfpmath=sse -malign-double -ffast-math -fno-exceptions -fno-rtti -fvisibility=hidden -fvisibility-inlines-hidden
 SimulationController_debug_common_cflags  += -Wall -Wextra -Wstrict-aliasing=2 -fdiagnostics-show-option
 SimulationController_debug_common_cflags  += -Wno-long-long
-SimulationController_debug_common_cflags  += -Wno-unknown-pragmas -Wno-invalid-offsetof -Wno-uninitialized -Wno-attributes -Wno-unused-local-typedefs
-SimulationController_debug_common_cflags  += -Wno-unused-parameter -Wno-missing-field-initializers -Wno-ignored-qualifiers
-SimulationController_debug_common_cflags  += -g3 -gdwarf-2
+SimulationController_debug_common_cflags  += -Wno-unknown-pragmas -Wno-invalid-offsetof -Wno-uninitialized -Wno-attributes 
+SimulationController_debug_common_cflags  += -Wno-unused-parameter -Wno-missing-field-initializers 
+SimulationController_debug_common_cflags  += -g3 -gdwarf-2 
 SimulationController_debug_cflags	:= $(SimulationController_debug_common_cflags)
 SimulationController_debug_cppflags	:= $(SimulationController_debug_common_cflags)
 SimulationController_debug_lflags    := $(SimulationController_custom_lflags)
@@ -245,11 +245,11 @@ SimulationController_checked_common_cflags    += -MMD
 SimulationController_checked_common_cflags    += $(addprefix -D, $(SimulationController_checked_defines))
 SimulationController_checked_common_cflags    += $(addprefix -I, $(SimulationController_checked_hpaths))
 SimulationController_checked_common_cflags  += -m32
-SimulationController_checked_common_cflags  += -Werror -m32 -fPIC -msse2 -mfpmath=sse -malign-double -ffast-math -fno-exceptions -fno-rtti -fvisibility=hidden -fvisibility-inlines-hidden
+SimulationController_checked_common_cflags  +=  -m32 -fPIC -msse2 -mfpmath=sse -malign-double -ffast-math -fno-exceptions -fno-rtti -fvisibility=hidden -fvisibility-inlines-hidden
 SimulationController_checked_common_cflags  += -Wall -Wextra -Wstrict-aliasing=2 -fdiagnostics-show-option
 SimulationController_checked_common_cflags  += -Wno-long-long
-SimulationController_checked_common_cflags  += -Wno-unknown-pragmas -Wno-invalid-offsetof -Wno-uninitialized -Wno-attributes -Wno-unused-local-typedefs
-SimulationController_checked_common_cflags  += -Wno-unused-parameter -Wno-missing-field-initializers -Wno-ignored-qualifiers
+SimulationController_checked_common_cflags  += -Wno-unknown-pragmas -Wno-invalid-offsetof -Wno-uninitialized -Wno-attributes 
+SimulationController_checked_common_cflags  += -Wno-unused-parameter -Wno-missing-field-initializers 
 SimulationController_checked_common_cflags  += -g3 -gdwarf-2 -O3 -fno-strict-aliasing
 SimulationController_checked_cflags	:= $(SimulationController_checked_common_cflags)
 SimulationController_checked_cppflags	:= $(SimulationController_checked_common_cflags)
@@ -365,11 +365,11 @@ SimulationController_profile_common_cflags    += -MMD
 SimulationController_profile_common_cflags    += $(addprefix -D, $(SimulationController_profile_defines))
 SimulationController_profile_common_cflags    += $(addprefix -I, $(SimulationController_profile_hpaths))
 SimulationController_profile_common_cflags  += -m32
-SimulationController_profile_common_cflags  += -Werror -m32 -fPIC -msse2 -mfpmath=sse -malign-double -ffast-math -fno-exceptions -fno-rtti -fvisibility=hidden -fvisibility-inlines-hidden
+SimulationController_profile_common_cflags  +=  -m32 -fPIC -msse2 -mfpmath=sse -malign-double -ffast-math -fno-exceptions -fno-rtti -fvisibility=hidden -fvisibility-inlines-hidden
 SimulationController_profile_common_cflags  += -Wall -Wextra -Wstrict-aliasing=2 -fdiagnostics-show-option
 SimulationController_profile_common_cflags  += -Wno-long-long
-SimulationController_profile_common_cflags  += -Wno-unknown-pragmas -Wno-invalid-offsetof -Wno-uninitialized -Wno-attributes -Wno-unused-local-typedefs
-SimulationController_profile_common_cflags  += -Wno-unused-parameter -Wno-missing-field-initializers -Wno-ignored-qualifiers
+SimulationController_profile_common_cflags  += -Wno-unknown-pragmas -Wno-invalid-offsetof -Wno-uninitialized -Wno-attributes 
+SimulationController_profile_common_cflags  += -Wno-unused-parameter -Wno-missing-field-initializers 
 SimulationController_profile_common_cflags  += -O3 -fno-strict-aliasing
 SimulationController_profile_cflags	:= $(SimulationController_profile_common_cflags)
 SimulationController_profile_cppflags	:= $(SimulationController_profile_common_cflags)
@@ -483,11 +483,11 @@ SimulationController_release_common_cflags    += -MMD
 SimulationController_release_common_cflags    += $(addprefix -D, $(SimulationController_release_defines))
 SimulationController_release_common_cflags    += $(addprefix -I, $(SimulationController_release_hpaths))
 SimulationController_release_common_cflags  += -m32
-SimulationController_release_common_cflags  += -Werror -m32 -fPIC -msse2 -mfpmath=sse -malign-double -ffast-math -fno-exceptions -fno-rtti -fvisibility=hidden -fvisibility-inlines-hidden
+SimulationController_release_common_cflags  +=  -m32 -fPIC -msse2 -mfpmath=sse -malign-double -ffast-math -fno-exceptions -fno-rtti -fvisibility=hidden -fvisibility-inlines-hidden
 SimulationController_release_common_cflags  += -Wall -Wextra -Wstrict-aliasing=2 -fdiagnostics-show-option
 SimulationController_release_common_cflags  += -Wno-long-long
-SimulationController_release_common_cflags  += -Wno-unknown-pragmas -Wno-invalid-offsetof -Wno-uninitialized -Wno-attributes -Wno-unused-local-typedefs
-SimulationController_release_common_cflags  += -Wno-unused-parameter -Wno-missing-field-initializers -Wno-ignored-qualifiers
+SimulationController_release_common_cflags  += -Wno-unknown-pragmas -Wno-invalid-offsetof -Wno-uninitialized -Wno-attributes 
+SimulationController_release_common_cflags  += -Wno-unused-parameter -Wno-missing-field-initializers 
 SimulationController_release_common_cflags  += -O3 -fno-strict-aliasing
 SimulationController_release_cflags	:= $(SimulationController_release_common_cflags)
 SimulationController_release_cppflags	:= $(SimulationController_release_common_cflags)

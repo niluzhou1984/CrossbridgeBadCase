@@ -48,12 +48,12 @@ PhysXVisualDebuggerSDK_debug_common_cflags    += -MMD
 PhysXVisualDebuggerSDK_debug_common_cflags    += $(addprefix -D, $(PhysXVisualDebuggerSDK_debug_defines))
 PhysXVisualDebuggerSDK_debug_common_cflags    += $(addprefix -I, $(PhysXVisualDebuggerSDK_debug_hpaths))
 PhysXVisualDebuggerSDK_debug_common_cflags  += -m32
-PhysXVisualDebuggerSDK_debug_common_cflags  += -Werror -m32 -fPIC -msse2 -mfpmath=sse -malign-double -ffast-math -fno-exceptions -fno-rtti -fvisibility=hidden -fvisibility-inlines-hidden
+PhysXVisualDebuggerSDK_debug_common_cflags  +=  -m32 -fPIC -msse2 -mfpmath=sse -malign-double -ffast-math -fno-exceptions -fno-rtti -fvisibility=hidden -fvisibility-inlines-hidden
 PhysXVisualDebuggerSDK_debug_common_cflags  += -Wall -Wextra -Wstrict-aliasing=2 -fdiagnostics-show-option
 PhysXVisualDebuggerSDK_debug_common_cflags  += -Wno-long-long
-PhysXVisualDebuggerSDK_debug_common_cflags  += -Wno-unknown-pragmas -Wno-invalid-offsetof -Wno-uninitialized -Wno-attributes -Wno-unused-local-typedefs
-PhysXVisualDebuggerSDK_debug_common_cflags  += -Wno-unused-parameter -Wno-missing-field-initializers -Wno-ignored-qualifiers
-PhysXVisualDebuggerSDK_debug_common_cflags  += -g3 -gdwarf-2
+PhysXVisualDebuggerSDK_debug_common_cflags  += -Wno-unknown-pragmas -Wno-invalid-offsetof -Wno-uninitialized -Wno-attributes 
+PhysXVisualDebuggerSDK_debug_common_cflags  += -Wno-unused-parameter -Wno-missing-field-initializers 
+PhysXVisualDebuggerSDK_debug_common_cflags  += -g3 -gdwarf-2 
 PhysXVisualDebuggerSDK_debug_cflags	:= $(PhysXVisualDebuggerSDK_debug_common_cflags)
 PhysXVisualDebuggerSDK_debug_cppflags	:= $(PhysXVisualDebuggerSDK_debug_common_cflags)
 PhysXVisualDebuggerSDK_debug_lflags    := $(PhysXVisualDebuggerSDK_custom_lflags)
@@ -134,11 +134,11 @@ PhysXVisualDebuggerSDK_checked_common_cflags    += -MMD
 PhysXVisualDebuggerSDK_checked_common_cflags    += $(addprefix -D, $(PhysXVisualDebuggerSDK_checked_defines))
 PhysXVisualDebuggerSDK_checked_common_cflags    += $(addprefix -I, $(PhysXVisualDebuggerSDK_checked_hpaths))
 PhysXVisualDebuggerSDK_checked_common_cflags  += -m32
-PhysXVisualDebuggerSDK_checked_common_cflags  += -Werror -m32 -fPIC -msse2 -mfpmath=sse -malign-double -ffast-math -fno-exceptions -fno-rtti -fvisibility=hidden -fvisibility-inlines-hidden
+PhysXVisualDebuggerSDK_checked_common_cflags  +=  -m32 -fPIC -msse2 -mfpmath=sse -malign-double -ffast-math -fno-exceptions -fno-rtti -fvisibility=hidden -fvisibility-inlines-hidden
 PhysXVisualDebuggerSDK_checked_common_cflags  += -Wall -Wextra -Wstrict-aliasing=2 -fdiagnostics-show-option
 PhysXVisualDebuggerSDK_checked_common_cflags  += -Wno-long-long
-PhysXVisualDebuggerSDK_checked_common_cflags  += -Wno-unknown-pragmas -Wno-invalid-offsetof -Wno-uninitialized -Wno-attributes -Wno-unused-local-typedefs
-PhysXVisualDebuggerSDK_checked_common_cflags  += -Wno-unused-parameter -Wno-missing-field-initializers -Wno-ignored-qualifiers
+PhysXVisualDebuggerSDK_checked_common_cflags  += -Wno-unknown-pragmas -Wno-invalid-offsetof -Wno-uninitialized -Wno-attributes 
+PhysXVisualDebuggerSDK_checked_common_cflags  += -Wno-unused-parameter -Wno-missing-field-initializers 
 PhysXVisualDebuggerSDK_checked_common_cflags  += -g3 -gdwarf-2 -O3 -fno-strict-aliasing
 PhysXVisualDebuggerSDK_checked_cflags	:= $(PhysXVisualDebuggerSDK_checked_common_cflags)
 PhysXVisualDebuggerSDK_checked_cppflags	:= $(PhysXVisualDebuggerSDK_checked_common_cflags)
@@ -220,11 +220,11 @@ PhysXVisualDebuggerSDK_profile_common_cflags    += -MMD
 PhysXVisualDebuggerSDK_profile_common_cflags    += $(addprefix -D, $(PhysXVisualDebuggerSDK_profile_defines))
 PhysXVisualDebuggerSDK_profile_common_cflags    += $(addprefix -I, $(PhysXVisualDebuggerSDK_profile_hpaths))
 PhysXVisualDebuggerSDK_profile_common_cflags  += -m32
-PhysXVisualDebuggerSDK_profile_common_cflags  += -Werror -m32 -fPIC -msse2 -mfpmath=sse -malign-double -ffast-math -fno-exceptions -fno-rtti -fvisibility=hidden -fvisibility-inlines-hidden
+PhysXVisualDebuggerSDK_profile_common_cflags  +=  -m32 -fPIC -msse2 -mfpmath=sse -malign-double -ffast-math -fno-exceptions -fno-rtti -fvisibility=hidden -fvisibility-inlines-hidden
 PhysXVisualDebuggerSDK_profile_common_cflags  += -Wall -Wextra -Wstrict-aliasing=2 -fdiagnostics-show-option
 PhysXVisualDebuggerSDK_profile_common_cflags  += -Wno-long-long
-PhysXVisualDebuggerSDK_profile_common_cflags  += -Wno-unknown-pragmas -Wno-invalid-offsetof -Wno-uninitialized -Wno-attributes -Wno-unused-local-typedefs
-PhysXVisualDebuggerSDK_profile_common_cflags  += -Wno-unused-parameter -Wno-missing-field-initializers -Wno-ignored-qualifiers
+PhysXVisualDebuggerSDK_profile_common_cflags  += -Wno-unknown-pragmas -Wno-invalid-offsetof -Wno-uninitialized -Wno-attributes 
+PhysXVisualDebuggerSDK_profile_common_cflags  += -Wno-unused-parameter -Wno-missing-field-initializers 
 PhysXVisualDebuggerSDK_profile_common_cflags  += -O3 -fno-strict-aliasing
 PhysXVisualDebuggerSDK_profile_cflags	:= $(PhysXVisualDebuggerSDK_profile_common_cflags)
 PhysXVisualDebuggerSDK_profile_cppflags	:= $(PhysXVisualDebuggerSDK_profile_common_cflags)
@@ -304,11 +304,11 @@ PhysXVisualDebuggerSDK_release_common_cflags    += -MMD
 PhysXVisualDebuggerSDK_release_common_cflags    += $(addprefix -D, $(PhysXVisualDebuggerSDK_release_defines))
 PhysXVisualDebuggerSDK_release_common_cflags    += $(addprefix -I, $(PhysXVisualDebuggerSDK_release_hpaths))
 PhysXVisualDebuggerSDK_release_common_cflags  += -m32
-PhysXVisualDebuggerSDK_release_common_cflags  += -Werror -m32 -fPIC -msse2 -mfpmath=sse -malign-double -ffast-math -fno-exceptions -fno-rtti -fvisibility=hidden -fvisibility-inlines-hidden
+PhysXVisualDebuggerSDK_release_common_cflags  +=  -m32 -fPIC -msse2 -mfpmath=sse -malign-double -ffast-math -fno-exceptions -fno-rtti -fvisibility=hidden -fvisibility-inlines-hidden
 PhysXVisualDebuggerSDK_release_common_cflags  += -Wall -Wextra -Wstrict-aliasing=2 -fdiagnostics-show-option
 PhysXVisualDebuggerSDK_release_common_cflags  += -Wno-long-long
-PhysXVisualDebuggerSDK_release_common_cflags  += -Wno-unknown-pragmas -Wno-invalid-offsetof -Wno-uninitialized -Wno-attributes -Wno-unused-local-typedefs
-PhysXVisualDebuggerSDK_release_common_cflags  += -Wno-unused-parameter -Wno-missing-field-initializers -Wno-ignored-qualifiers
+PhysXVisualDebuggerSDK_release_common_cflags  += -Wno-unknown-pragmas -Wno-invalid-offsetof -Wno-uninitialized -Wno-attributes 
+PhysXVisualDebuggerSDK_release_common_cflags  += -Wno-unused-parameter -Wno-missing-field-initializers 
 PhysXVisualDebuggerSDK_release_common_cflags  += -O3 -fno-strict-aliasing
 PhysXVisualDebuggerSDK_release_cflags	:= $(PhysXVisualDebuggerSDK_release_common_cflags)
 PhysXVisualDebuggerSDK_release_cppflags	:= $(PhysXVisualDebuggerSDK_release_common_cflags)

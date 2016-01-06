@@ -71,12 +71,12 @@ PhysXCharacterKinematic_debug_common_cflags    += -MMD
 PhysXCharacterKinematic_debug_common_cflags    += $(addprefix -D, $(PhysXCharacterKinematic_debug_defines))
 PhysXCharacterKinematic_debug_common_cflags    += $(addprefix -I, $(PhysXCharacterKinematic_debug_hpaths))
 PhysXCharacterKinematic_debug_common_cflags  += -m32
-PhysXCharacterKinematic_debug_common_cflags  += -Werror -m32 -fPIC -msse2 -mfpmath=sse -malign-double -ffast-math -fno-exceptions -fno-rtti -fvisibility=hidden -fvisibility-inlines-hidden
+PhysXCharacterKinematic_debug_common_cflags  +=  -m32 -fPIC -msse2 -mfpmath=sse -malign-double -ffast-math -fno-exceptions -fno-rtti -fvisibility=hidden -fvisibility-inlines-hidden
 PhysXCharacterKinematic_debug_common_cflags  += -Wall -Wextra -Wstrict-aliasing=2 -fdiagnostics-show-option
 PhysXCharacterKinematic_debug_common_cflags  += -Wno-long-long
-PhysXCharacterKinematic_debug_common_cflags  += -Wno-unknown-pragmas -Wno-invalid-offsetof -Wno-uninitialized -Wno-attributes -Wno-unused-local-typedefs
-PhysXCharacterKinematic_debug_common_cflags  += -Wno-unused-parameter -Wno-missing-field-initializers -Wno-ignored-qualifiers
-PhysXCharacterKinematic_debug_common_cflags  += -g3 -gdwarf-2
+PhysXCharacterKinematic_debug_common_cflags  += -Wno-unknown-pragmas -Wno-invalid-offsetof -Wno-uninitialized -Wno-attributes 
+PhysXCharacterKinematic_debug_common_cflags  += -Wno-unused-parameter -Wno-missing-field-initializers 
+PhysXCharacterKinematic_debug_common_cflags  += -g3 -gdwarf-2 
 PhysXCharacterKinematic_debug_cflags	:= $(PhysXCharacterKinematic_debug_common_cflags)
 PhysXCharacterKinematic_debug_cppflags	:= $(PhysXCharacterKinematic_debug_common_cflags)
 PhysXCharacterKinematic_debug_lflags    := $(PhysXCharacterKinematic_custom_lflags)
@@ -89,7 +89,7 @@ PhysXCharacterKinematic_debug_cpp_o    = $(addprefix $(PhysXCharacterKinematic_d
 PhysXCharacterKinematic_debug_cc_o    = $(addprefix $(PhysXCharacterKinematic_debug_objsdir)/, $(subst ./, , $(subst ../, , $(patsubst %.cc, %.cc.o, $(PhysXCharacterKinematic_ccfiles)))))
 PhysXCharacterKinematic_debug_c_o      = $(addprefix $(PhysXCharacterKinematic_debug_objsdir)/, $(subst ./, , $(subst ../, , $(patsubst %.c, %.c.o, $(PhysXCharacterKinematic_cfiles)))))
 PhysXCharacterKinematic_debug_obj      = $(PhysXCharacterKinematic_debug_cpp_o) $(PhysXCharacterKinematic_debug_cc_o) $(PhysXCharacterKinematic_debug_c_o)
-PhysXCharacterKinematic_debug_bin      := ./../../../Bin/linux32/libPhysX3CharacterKinematicDEBUG_x86.so
+PhysXCharacterKinematic_debug_bin      := ./../../../Bin/linux32/libPhysX3CharacterKinematicDEBUG_x86.dll
 
 clean_PhysXCharacterKinematic_debug: 
 	@$(ECHO) clean PhysXCharacterKinematic debug
@@ -103,7 +103,7 @@ mainbuild_PhysXCharacterKinematic_debug: prebuild_PhysXCharacterKinematic_debug 
 prebuild_PhysXCharacterKinematic_debug:
 
 $(PhysXCharacterKinematic_debug_bin): $(PhysXCharacterKinematic_debug_obj) build_PhysXCommon_debug build_PhysXExtensions_debug 
-	mkdir -p `dirname ./../../../Bin/linux32/libPhysX3CharacterKinematicDEBUG_x86.so`
+	mkdir -p `dirname ./../../../Bin/linux32/libPhysX3CharacterKinematicDEBUG_x86.dll`
 	$(CXX) -shared $(PhysXCharacterKinematic_debug_obj) $(PhysXCharacterKinematic_debug_lflags) -lc -o $@ 
 	$(ECHO) building $@ complete!
 
@@ -176,11 +176,11 @@ PhysXCharacterKinematic_checked_common_cflags    += -MMD
 PhysXCharacterKinematic_checked_common_cflags    += $(addprefix -D, $(PhysXCharacterKinematic_checked_defines))
 PhysXCharacterKinematic_checked_common_cflags    += $(addprefix -I, $(PhysXCharacterKinematic_checked_hpaths))
 PhysXCharacterKinematic_checked_common_cflags  += -m32
-PhysXCharacterKinematic_checked_common_cflags  += -Werror -m32 -fPIC -msse2 -mfpmath=sse -malign-double -ffast-math -fno-exceptions -fno-rtti -fvisibility=hidden -fvisibility-inlines-hidden
+PhysXCharacterKinematic_checked_common_cflags  +=  -m32 -fPIC -msse2 -mfpmath=sse -malign-double -ffast-math -fno-exceptions -fno-rtti -fvisibility=hidden -fvisibility-inlines-hidden
 PhysXCharacterKinematic_checked_common_cflags  += -Wall -Wextra -Wstrict-aliasing=2 -fdiagnostics-show-option
 PhysXCharacterKinematic_checked_common_cflags  += -Wno-long-long
-PhysXCharacterKinematic_checked_common_cflags  += -Wno-unknown-pragmas -Wno-invalid-offsetof -Wno-uninitialized -Wno-attributes -Wno-unused-local-typedefs
-PhysXCharacterKinematic_checked_common_cflags  += -Wno-unused-parameter -Wno-missing-field-initializers -Wno-ignored-qualifiers
+PhysXCharacterKinematic_checked_common_cflags  += -Wno-unknown-pragmas -Wno-invalid-offsetof -Wno-uninitialized -Wno-attributes 
+PhysXCharacterKinematic_checked_common_cflags  += -Wno-unused-parameter -Wno-missing-field-initializers 
 PhysXCharacterKinematic_checked_common_cflags  += -g3 -gdwarf-2 -O3 -fno-strict-aliasing
 PhysXCharacterKinematic_checked_cflags	:= $(PhysXCharacterKinematic_checked_common_cflags)
 PhysXCharacterKinematic_checked_cppflags	:= $(PhysXCharacterKinematic_checked_common_cflags)
@@ -194,7 +194,7 @@ PhysXCharacterKinematic_checked_cpp_o    = $(addprefix $(PhysXCharacterKinematic
 PhysXCharacterKinematic_checked_cc_o    = $(addprefix $(PhysXCharacterKinematic_checked_objsdir)/, $(subst ./, , $(subst ../, , $(patsubst %.cc, %.cc.o, $(PhysXCharacterKinematic_ccfiles)))))
 PhysXCharacterKinematic_checked_c_o      = $(addprefix $(PhysXCharacterKinematic_checked_objsdir)/, $(subst ./, , $(subst ../, , $(patsubst %.c, %.c.o, $(PhysXCharacterKinematic_cfiles)))))
 PhysXCharacterKinematic_checked_obj      = $(PhysXCharacterKinematic_checked_cpp_o) $(PhysXCharacterKinematic_checked_cc_o) $(PhysXCharacterKinematic_checked_c_o)
-PhysXCharacterKinematic_checked_bin      := ./../../../Bin/linux32/libPhysX3CharacterKinematicCHECKED_x86.so
+PhysXCharacterKinematic_checked_bin      := ./../../../Bin/linux32/libPhysX3CharacterKinematicCHECKED_x86.dll
 
 clean_PhysXCharacterKinematic_checked: 
 	@$(ECHO) clean PhysXCharacterKinematic checked
@@ -208,7 +208,7 @@ mainbuild_PhysXCharacterKinematic_checked: prebuild_PhysXCharacterKinematic_chec
 prebuild_PhysXCharacterKinematic_checked:
 
 $(PhysXCharacterKinematic_checked_bin): $(PhysXCharacterKinematic_checked_obj) build_PhysXCommon_checked build_PhysXExtensions_checked 
-	mkdir -p `dirname ./../../../Bin/linux32/libPhysX3CharacterKinematicCHECKED_x86.so`
+	mkdir -p `dirname ./../../../Bin/linux32/libPhysX3CharacterKinematicCHECKED_x86.dll`
 	$(CXX) -shared $(PhysXCharacterKinematic_checked_obj) $(PhysXCharacterKinematic_checked_lflags) -lc -o $@ 
 	$(ECHO) building $@ complete!
 
@@ -281,11 +281,11 @@ PhysXCharacterKinematic_profile_common_cflags    += -MMD
 PhysXCharacterKinematic_profile_common_cflags    += $(addprefix -D, $(PhysXCharacterKinematic_profile_defines))
 PhysXCharacterKinematic_profile_common_cflags    += $(addprefix -I, $(PhysXCharacterKinematic_profile_hpaths))
 PhysXCharacterKinematic_profile_common_cflags  += -m32
-PhysXCharacterKinematic_profile_common_cflags  += -Werror -m32 -fPIC -msse2 -mfpmath=sse -malign-double -ffast-math -fno-exceptions -fno-rtti -fvisibility=hidden -fvisibility-inlines-hidden
+PhysXCharacterKinematic_profile_common_cflags  +=  -m32 -fPIC -msse2 -mfpmath=sse -malign-double -ffast-math -fno-exceptions -fno-rtti -fvisibility=hidden -fvisibility-inlines-hidden
 PhysXCharacterKinematic_profile_common_cflags  += -Wall -Wextra -Wstrict-aliasing=2 -fdiagnostics-show-option
 PhysXCharacterKinematic_profile_common_cflags  += -Wno-long-long
-PhysXCharacterKinematic_profile_common_cflags  += -Wno-unknown-pragmas -Wno-invalid-offsetof -Wno-uninitialized -Wno-attributes -Wno-unused-local-typedefs
-PhysXCharacterKinematic_profile_common_cflags  += -Wno-unused-parameter -Wno-missing-field-initializers -Wno-ignored-qualifiers
+PhysXCharacterKinematic_profile_common_cflags  += -Wno-unknown-pragmas -Wno-invalid-offsetof -Wno-uninitialized -Wno-attributes 
+PhysXCharacterKinematic_profile_common_cflags  += -Wno-unused-parameter -Wno-missing-field-initializers 
 PhysXCharacterKinematic_profile_common_cflags  += -O3 -fno-strict-aliasing
 PhysXCharacterKinematic_profile_cflags	:= $(PhysXCharacterKinematic_profile_common_cflags)
 PhysXCharacterKinematic_profile_cppflags	:= $(PhysXCharacterKinematic_profile_common_cflags)
@@ -299,7 +299,7 @@ PhysXCharacterKinematic_profile_cpp_o    = $(addprefix $(PhysXCharacterKinematic
 PhysXCharacterKinematic_profile_cc_o    = $(addprefix $(PhysXCharacterKinematic_profile_objsdir)/, $(subst ./, , $(subst ../, , $(patsubst %.cc, %.cc.o, $(PhysXCharacterKinematic_ccfiles)))))
 PhysXCharacterKinematic_profile_c_o      = $(addprefix $(PhysXCharacterKinematic_profile_objsdir)/, $(subst ./, , $(subst ../, , $(patsubst %.c, %.c.o, $(PhysXCharacterKinematic_cfiles)))))
 PhysXCharacterKinematic_profile_obj      = $(PhysXCharacterKinematic_profile_cpp_o) $(PhysXCharacterKinematic_profile_cc_o) $(PhysXCharacterKinematic_profile_c_o)
-PhysXCharacterKinematic_profile_bin      := ./../../../Bin/linux32/libPhysX3CharacterKinematicPROFILE_x86.so
+PhysXCharacterKinematic_profile_bin      := ./../../../Bin/linux32/libPhysX3CharacterKinematicPROFILE_x86.dll
 
 clean_PhysXCharacterKinematic_profile: 
 	@$(ECHO) clean PhysXCharacterKinematic profile
@@ -313,7 +313,7 @@ mainbuild_PhysXCharacterKinematic_profile: prebuild_PhysXCharacterKinematic_prof
 prebuild_PhysXCharacterKinematic_profile:
 
 $(PhysXCharacterKinematic_profile_bin): $(PhysXCharacterKinematic_profile_obj) build_PhysXCommon_profile build_PhysXExtensions_profile 
-	mkdir -p `dirname ./../../../Bin/linux32/libPhysX3CharacterKinematicPROFILE_x86.so`
+	mkdir -p `dirname ./../../../Bin/linux32/libPhysX3CharacterKinematicPROFILE_x86.dll`
 	$(CXX) -shared $(PhysXCharacterKinematic_profile_obj) $(PhysXCharacterKinematic_profile_lflags) -lc -o $@ 
 	$(ECHO) building $@ complete!
 
@@ -384,11 +384,11 @@ PhysXCharacterKinematic_release_common_cflags    += -MMD
 PhysXCharacterKinematic_release_common_cflags    += $(addprefix -D, $(PhysXCharacterKinematic_release_defines))
 PhysXCharacterKinematic_release_common_cflags    += $(addprefix -I, $(PhysXCharacterKinematic_release_hpaths))
 PhysXCharacterKinematic_release_common_cflags  += -m32
-PhysXCharacterKinematic_release_common_cflags  += -Werror -m32 -fPIC -msse2 -mfpmath=sse -malign-double -ffast-math -fno-exceptions -fno-rtti -fvisibility=hidden -fvisibility-inlines-hidden
+PhysXCharacterKinematic_release_common_cflags  +=  -m32 -fPIC -msse2 -mfpmath=sse -malign-double -ffast-math -fno-exceptions -fno-rtti -fvisibility=hidden -fvisibility-inlines-hidden
 PhysXCharacterKinematic_release_common_cflags  += -Wall -Wextra -Wstrict-aliasing=2 -fdiagnostics-show-option
 PhysXCharacterKinematic_release_common_cflags  += -Wno-long-long
-PhysXCharacterKinematic_release_common_cflags  += -Wno-unknown-pragmas -Wno-invalid-offsetof -Wno-uninitialized -Wno-attributes -Wno-unused-local-typedefs
-PhysXCharacterKinematic_release_common_cflags  += -Wno-unused-parameter -Wno-missing-field-initializers -Wno-ignored-qualifiers
+PhysXCharacterKinematic_release_common_cflags  += -Wno-unknown-pragmas -Wno-invalid-offsetof -Wno-uninitialized -Wno-attributes 
+PhysXCharacterKinematic_release_common_cflags  += -Wno-unused-parameter -Wno-missing-field-initializers 
 PhysXCharacterKinematic_release_common_cflags  += -O3 -fno-strict-aliasing
 PhysXCharacterKinematic_release_cflags	:= $(PhysXCharacterKinematic_release_common_cflags)
 PhysXCharacterKinematic_release_cppflags	:= $(PhysXCharacterKinematic_release_common_cflags)
@@ -402,7 +402,7 @@ PhysXCharacterKinematic_release_cpp_o    = $(addprefix $(PhysXCharacterKinematic
 PhysXCharacterKinematic_release_cc_o    = $(addprefix $(PhysXCharacterKinematic_release_objsdir)/, $(subst ./, , $(subst ../, , $(patsubst %.cc, %.cc.o, $(PhysXCharacterKinematic_ccfiles)))))
 PhysXCharacterKinematic_release_c_o      = $(addprefix $(PhysXCharacterKinematic_release_objsdir)/, $(subst ./, , $(subst ../, , $(patsubst %.c, %.c.o, $(PhysXCharacterKinematic_cfiles)))))
 PhysXCharacterKinematic_release_obj      = $(PhysXCharacterKinematic_release_cpp_o) $(PhysXCharacterKinematic_release_cc_o) $(PhysXCharacterKinematic_release_c_o)
-PhysXCharacterKinematic_release_bin      := ./../../../Bin/linux32/libPhysX3CharacterKinematic_x86.so
+PhysXCharacterKinematic_release_bin      := ./../../../Bin/linux32/libPhysX3CharacterKinematic_x86.a
 
 clean_PhysXCharacterKinematic_release: 
 	@$(ECHO) clean PhysXCharacterKinematic release
@@ -416,8 +416,9 @@ mainbuild_PhysXCharacterKinematic_release: prebuild_PhysXCharacterKinematic_rele
 prebuild_PhysXCharacterKinematic_release:
 
 $(PhysXCharacterKinematic_release_bin): $(PhysXCharacterKinematic_release_obj) build_PhysXCommon_release build_PhysXExtensions_release 
-	mkdir -p `dirname ./../../../Bin/linux32/libPhysX3CharacterKinematic_x86.so`
-	$(CXX) -shared $(PhysXCharacterKinematic_release_obj) $(PhysXCharacterKinematic_release_lflags) -lc -o $@ 
+	mkdir -p `dirname ./../../../Bin/linux32/libPhysX3CharacterKinematic_x86.a`
+	#$(CXX) -shared $(PhysXCharacterKinematic_release_obj) $(PhysXCharacterKinematic_release_lflags) -lc -o $@ 
+	@$(AR) rcs  $(PhysXCharacterKinematic_release_bin)  $(PhysXCharacterKinematic_release_obj)
 	$(ECHO) building $@ complete!
 
 PhysXCharacterKinematic_release_DEPDIR = $(dir $(@))/$(*F)

@@ -193,12 +193,12 @@ PhysXCommon_debug_common_cflags    += -MMD
 PhysXCommon_debug_common_cflags    += $(addprefix -D, $(PhysXCommon_debug_defines))
 PhysXCommon_debug_common_cflags    += $(addprefix -I, $(PhysXCommon_debug_hpaths))
 PhysXCommon_debug_common_cflags  += -m32
-PhysXCommon_debug_common_cflags  += -Werror -m32 -fPIC -msse2 -mfpmath=sse -malign-double -ffast-math -fno-exceptions -fno-rtti -fvisibility=hidden -fvisibility-inlines-hidden
+PhysXCommon_debug_common_cflags  +=  -m32 -fPIC -msse2 -mfpmath=sse -malign-double -ffast-math -fno-exceptions -fno-rtti -fvisibility=hidden -fvisibility-inlines-hidden
 PhysXCommon_debug_common_cflags  += -Wall -Wextra -Wstrict-aliasing=2 -fdiagnostics-show-option
 PhysXCommon_debug_common_cflags  += -Wno-long-long
-PhysXCommon_debug_common_cflags  += -Wno-unknown-pragmas -Wno-invalid-offsetof -Wno-uninitialized -Wno-attributes -Wno-unused-local-typedefs
-PhysXCommon_debug_common_cflags  += -Wno-unused-parameter -Wno-missing-field-initializers -Wno-ignored-qualifiers
-PhysXCommon_debug_common_cflags  += -g3 -gdwarf-2
+PhysXCommon_debug_common_cflags  += -Wno-unknown-pragmas -Wno-invalid-offsetof -Wno-uninitialized -Wno-attributes 
+PhysXCommon_debug_common_cflags  += -Wno-unused-parameter -Wno-missing-field-initializers 
+PhysXCommon_debug_common_cflags  += -g3 -gdwarf-2 
 PhysXCommon_debug_cflags	:= $(PhysXCommon_debug_common_cflags)
 PhysXCommon_debug_cppflags	:= $(PhysXCommon_debug_common_cflags)
 PhysXCommon_debug_lflags    := $(PhysXCommon_custom_lflags)
@@ -211,7 +211,7 @@ PhysXCommon_debug_cpp_o    = $(addprefix $(PhysXCommon_debug_objsdir)/, $(subst 
 PhysXCommon_debug_cc_o    = $(addprefix $(PhysXCommon_debug_objsdir)/, $(subst ./, , $(subst ../, , $(patsubst %.cc, %.cc.o, $(PhysXCommon_ccfiles)))))
 PhysXCommon_debug_c_o      = $(addprefix $(PhysXCommon_debug_objsdir)/, $(subst ./, , $(subst ../, , $(patsubst %.c, %.c.o, $(PhysXCommon_cfiles)))))
 PhysXCommon_debug_obj      = $(PhysXCommon_debug_cpp_o) $(PhysXCommon_debug_cc_o) $(PhysXCommon_debug_c_o)
-PhysXCommon_debug_bin      := ./../../../Bin/linux32/libPhysX3CommonDEBUG_x86.so
+PhysXCommon_debug_bin      := ./../../../Bin/linux32/libPhysX3CommonDEBUG_x86.dll
 
 clean_PhysXCommon_debug: 
 	@$(ECHO) clean PhysXCommon debug
@@ -225,7 +225,7 @@ mainbuild_PhysXCommon_debug: prebuild_PhysXCommon_debug $(PhysXCommon_debug_bin)
 prebuild_PhysXCommon_debug:
 
 $(PhysXCommon_debug_bin): $(PhysXCommon_debug_obj) 
-	mkdir -p `dirname ./../../../Bin/linux32/libPhysX3CommonDEBUG_x86.so`
+	mkdir -p `dirname ./../../../Bin/linux32/libPhysX3CommonDEBUG_x86.dll`
 	$(CXX) -shared $(PhysXCommon_debug_obj) $(PhysXCommon_debug_lflags) -lc -o $@ 
 	$(ECHO) building $@ complete!
 
@@ -297,11 +297,11 @@ PhysXCommon_checked_common_cflags    += -MMD
 PhysXCommon_checked_common_cflags    += $(addprefix -D, $(PhysXCommon_checked_defines))
 PhysXCommon_checked_common_cflags    += $(addprefix -I, $(PhysXCommon_checked_hpaths))
 PhysXCommon_checked_common_cflags  += -m32
-PhysXCommon_checked_common_cflags  += -Werror -m32 -fPIC -msse2 -mfpmath=sse -malign-double -ffast-math -fno-exceptions -fno-rtti -fvisibility=hidden -fvisibility-inlines-hidden
+PhysXCommon_checked_common_cflags  +=  -m32 -fPIC -msse2 -mfpmath=sse -malign-double -ffast-math -fno-exceptions -fno-rtti -fvisibility=hidden -fvisibility-inlines-hidden
 PhysXCommon_checked_common_cflags  += -Wall -Wextra -Wstrict-aliasing=2 -fdiagnostics-show-option
 PhysXCommon_checked_common_cflags  += -Wno-long-long
-PhysXCommon_checked_common_cflags  += -Wno-unknown-pragmas -Wno-invalid-offsetof -Wno-uninitialized -Wno-attributes -Wno-unused-local-typedefs
-PhysXCommon_checked_common_cflags  += -Wno-unused-parameter -Wno-missing-field-initializers -Wno-ignored-qualifiers
+PhysXCommon_checked_common_cflags  += -Wno-unknown-pragmas -Wno-invalid-offsetof -Wno-uninitialized -Wno-attributes 
+PhysXCommon_checked_common_cflags  += -Wno-unused-parameter -Wno-missing-field-initializers 
 PhysXCommon_checked_common_cflags  += -g3 -gdwarf-2 -O3 -fno-strict-aliasing
 PhysXCommon_checked_cflags	:= $(PhysXCommon_checked_common_cflags)
 PhysXCommon_checked_cppflags	:= $(PhysXCommon_checked_common_cflags)
@@ -315,7 +315,7 @@ PhysXCommon_checked_cpp_o    = $(addprefix $(PhysXCommon_checked_objsdir)/, $(su
 PhysXCommon_checked_cc_o    = $(addprefix $(PhysXCommon_checked_objsdir)/, $(subst ./, , $(subst ../, , $(patsubst %.cc, %.cc.o, $(PhysXCommon_ccfiles)))))
 PhysXCommon_checked_c_o      = $(addprefix $(PhysXCommon_checked_objsdir)/, $(subst ./, , $(subst ../, , $(patsubst %.c, %.c.o, $(PhysXCommon_cfiles)))))
 PhysXCommon_checked_obj      = $(PhysXCommon_checked_cpp_o) $(PhysXCommon_checked_cc_o) $(PhysXCommon_checked_c_o)
-PhysXCommon_checked_bin      := ./../../../Bin/linux32/libPhysX3CommonCHECKED_x86.so
+PhysXCommon_checked_bin      := ./../../../Bin/linux32/libPhysX3CommonCHECKED_x86.dll
 
 clean_PhysXCommon_checked: 
 	@$(ECHO) clean PhysXCommon checked
@@ -329,7 +329,8 @@ mainbuild_PhysXCommon_checked: prebuild_PhysXCommon_checked $(PhysXCommon_checke
 prebuild_PhysXCommon_checked:
 
 $(PhysXCommon_checked_bin): $(PhysXCommon_checked_obj) 
-	mkdir -p `dirname ./../../../Bin/linux32/libPhysX3CommonCHECKED_x86.so`
+	mkdir -p `dirname ./../../../Bin/linux32/libPhysX3CommonCHECKED_x86.dll`
+	$(ECHO) $(PhysXCommon_checked_obj) $(PhysXCommon_checked_lflags) $@
 	$(CXX) -shared $(PhysXCommon_checked_obj) $(PhysXCommon_checked_lflags) -lc -o $@ 
 	$(ECHO) building $@ complete!
 
@@ -337,6 +338,7 @@ PhysXCommon_checked_DEPDIR = $(dir $(@))/$(*F)
 $(PhysXCommon_checked_cpp_o): $(PhysXCommon_checked_objsdir)/%.o:
 	$(ECHO) PhysXCommon: compiling checked $(filter %$(strip $(subst .cpp.o,.cpp, $(subst $(PhysXCommon_checked_objsdir),, $@))), $(PhysXCommon_cppfiles))...
 	mkdir -p $(dir $(@))
+	$(ECHO) $(PhysXCommon_checked_cppflags)
 	$(CXX) $(PhysXCommon_checked_cppflags) -c $(filter %$(strip $(subst .cpp.o,.cpp, $(subst $(PhysXCommon_checked_objsdir),, $@))), $(PhysXCommon_cppfiles)) -o $@
 	@mkdir -p $(dir $(addprefix $(DEPSDIR)/PhysXCommon/checked/, $(subst ./, , $(subst ../, , $(filter %$(strip $(subst .cpp.o,.cpp, $(subst $(PhysXCommon_checked_objsdir),, $@))), $(PhysXCommon_cppfiles))))))
 	cp $(PhysXCommon_checked_DEPDIR).d $(addprefix $(DEPSDIR)/PhysXCommon/checked/, $(subst ./, , $(subst ../, , $(filter %$(strip $(subst .cpp.o,.cpp, $(subst $(PhysXCommon_checked_objsdir),, $@))), $(PhysXCommon_cppfiles))))).P; \
@@ -401,11 +403,11 @@ PhysXCommon_profile_common_cflags    += -MMD
 PhysXCommon_profile_common_cflags    += $(addprefix -D, $(PhysXCommon_profile_defines))
 PhysXCommon_profile_common_cflags    += $(addprefix -I, $(PhysXCommon_profile_hpaths))
 PhysXCommon_profile_common_cflags  += -m32
-PhysXCommon_profile_common_cflags  += -Werror -m32 -fPIC -msse2 -mfpmath=sse -malign-double -ffast-math -fno-exceptions -fno-rtti -fvisibility=hidden -fvisibility-inlines-hidden
+PhysXCommon_profile_common_cflags  +=  -m32 -fPIC -msse2 -mfpmath=sse -malign-double -ffast-math -fno-exceptions -fno-rtti -fvisibility=hidden -fvisibility-inlines-hidden
 PhysXCommon_profile_common_cflags  += -Wall -Wextra -Wstrict-aliasing=2 -fdiagnostics-show-option
 PhysXCommon_profile_common_cflags  += -Wno-long-long
-PhysXCommon_profile_common_cflags  += -Wno-unknown-pragmas -Wno-invalid-offsetof -Wno-uninitialized -Wno-attributes -Wno-unused-local-typedefs
-PhysXCommon_profile_common_cflags  += -Wno-unused-parameter -Wno-missing-field-initializers -Wno-ignored-qualifiers
+PhysXCommon_profile_common_cflags  += -Wno-unknown-pragmas -Wno-invalid-offsetof -Wno-uninitialized -Wno-attributes 
+PhysXCommon_profile_common_cflags  += -Wno-unused-parameter -Wno-missing-field-initializers 
 PhysXCommon_profile_common_cflags  += -O3 -fno-strict-aliasing
 PhysXCommon_profile_cflags	:= $(PhysXCommon_profile_common_cflags)
 PhysXCommon_profile_cppflags	:= $(PhysXCommon_profile_common_cflags)
@@ -419,7 +421,7 @@ PhysXCommon_profile_cpp_o    = $(addprefix $(PhysXCommon_profile_objsdir)/, $(su
 PhysXCommon_profile_cc_o    = $(addprefix $(PhysXCommon_profile_objsdir)/, $(subst ./, , $(subst ../, , $(patsubst %.cc, %.cc.o, $(PhysXCommon_ccfiles)))))
 PhysXCommon_profile_c_o      = $(addprefix $(PhysXCommon_profile_objsdir)/, $(subst ./, , $(subst ../, , $(patsubst %.c, %.c.o, $(PhysXCommon_cfiles)))))
 PhysXCommon_profile_obj      = $(PhysXCommon_profile_cpp_o) $(PhysXCommon_profile_cc_o) $(PhysXCommon_profile_c_o)
-PhysXCommon_profile_bin      := ./../../../Bin/linux32/libPhysX3CommonPROFILE_x86.so
+PhysXCommon_profile_bin      := ./../../../Bin/linux32/libPhysX3CommonPROFILE_x86.dll
 
 clean_PhysXCommon_profile: 
 	@$(ECHO) clean PhysXCommon profile
@@ -433,7 +435,7 @@ mainbuild_PhysXCommon_profile: prebuild_PhysXCommon_profile $(PhysXCommon_profil
 prebuild_PhysXCommon_profile:
 
 $(PhysXCommon_profile_bin): $(PhysXCommon_profile_obj) 
-	mkdir -p `dirname ./../../../Bin/linux32/libPhysX3CommonPROFILE_x86.so`
+	mkdir -p `dirname ./../../../Bin/linux32/libPhysX3CommonPROFILE_x86.dll`
 	$(CXX) -shared $(PhysXCommon_profile_obj) $(PhysXCommon_profile_lflags) -lc -o $@ 
 	$(ECHO) building $@ complete!
 
@@ -503,25 +505,25 @@ PhysXCommon_release_common_cflags    += -MMD
 PhysXCommon_release_common_cflags    += $(addprefix -D, $(PhysXCommon_release_defines))
 PhysXCommon_release_common_cflags    += $(addprefix -I, $(PhysXCommon_release_hpaths))
 PhysXCommon_release_common_cflags  += -m32
-PhysXCommon_release_common_cflags  += -Werror -m32 -fPIC -msse2 -mfpmath=sse -malign-double -ffast-math -fno-exceptions -fno-rtti -fvisibility=hidden -fvisibility-inlines-hidden
+PhysXCommon_release_common_cflags  +=  -m32 -fPIC -msse2 -mfpmath=sse -malign-double -ffast-math -fno-exceptions -fno-rtti -fvisibility=hidden -fvisibility-inlines-hidden
 PhysXCommon_release_common_cflags  += -Wall -Wextra -Wstrict-aliasing=2 -fdiagnostics-show-option
 PhysXCommon_release_common_cflags  += -Wno-long-long
-PhysXCommon_release_common_cflags  += -Wno-unknown-pragmas -Wno-invalid-offsetof -Wno-uninitialized -Wno-attributes -Wno-unused-local-typedefs
-PhysXCommon_release_common_cflags  += -Wno-unused-parameter -Wno-missing-field-initializers -Wno-ignored-qualifiers
-PhysXCommon_release_common_cflags  += -O3 -fno-strict-aliasing
+PhysXCommon_release_common_cflags  += -Wno-unknown-pragmas -Wno-invalid-offsetof -Wno-uninitialized -Wno-attributes 
+PhysXCommon_release_common_cflags  += -Wno-unused-parameter -Wno-missing-field-initializers 
+PhysXCommon_release_common_cflags  += -O3 -fno-strict-aliasing 
 PhysXCommon_release_cflags	:= $(PhysXCommon_release_common_cflags)
 PhysXCommon_release_cppflags	:= $(PhysXCommon_release_common_cflags)
 PhysXCommon_release_lflags    := $(PhysXCommon_custom_lflags)
 PhysXCommon_release_lflags    += $(addprefix -L, $(PhysXCommon_release_lpaths))
 PhysXCommon_release_lflags    += -Wl,--start-group $(addprefix -l, $(PhysXCommon_release_libraries)) -Wl,--end-group
 PhysXCommon_release_lflags  += -lrt
-PhysXCommon_release_lflags  += -m32
+PhysXCommon_release_lflags  += -m32 
 PhysXCommon_release_objsdir  = $(OBJS_DIR)/PhysXCommon_release
 PhysXCommon_release_cpp_o    = $(addprefix $(PhysXCommon_release_objsdir)/, $(subst ./, , $(subst ../, , $(patsubst %.cpp, %.cpp.o, $(PhysXCommon_cppfiles)))))
 PhysXCommon_release_cc_o    = $(addprefix $(PhysXCommon_release_objsdir)/, $(subst ./, , $(subst ../, , $(patsubst %.cc, %.cc.o, $(PhysXCommon_ccfiles)))))
 PhysXCommon_release_c_o      = $(addprefix $(PhysXCommon_release_objsdir)/, $(subst ./, , $(subst ../, , $(patsubst %.c, %.c.o, $(PhysXCommon_cfiles)))))
 PhysXCommon_release_obj      = $(PhysXCommon_release_cpp_o) $(PhysXCommon_release_cc_o) $(PhysXCommon_release_c_o)
-PhysXCommon_release_bin      := ./../../../Bin/linux32/libPhysX3Common_x86.so
+PhysXCommon_release_bin      := ./../../../Bin/linux32/libPhysX3Common_x86.a
 
 clean_PhysXCommon_release: 
 	@$(ECHO) clean PhysXCommon release
@@ -535,8 +537,9 @@ mainbuild_PhysXCommon_release: prebuild_PhysXCommon_release $(PhysXCommon_releas
 prebuild_PhysXCommon_release:
 
 $(PhysXCommon_release_bin): $(PhysXCommon_release_obj) 
-	mkdir -p `dirname ./../../../Bin/linux32/libPhysX3Common_x86.so`
-	$(CXX) -shared $(PhysXCommon_release_obj) $(PhysXCommon_release_lflags) -lc -o $@ 
+	mkdir -p `dirname ./../../../Bin/linux32/libPhysX3Common_x86.a`
+	#$(CXX) -shared $(PhysXCommon_release_obj) $(PhysXCommon_release_lflags) -lc -o $@
+	@$(AR) rcs $(PhysXCommon_release_bin) $(PhysXCommon_release_obj)	
 	$(ECHO) building $@ complete!
 
 PhysXCommon_release_DEPDIR = $(dir $(@))/$(*F)

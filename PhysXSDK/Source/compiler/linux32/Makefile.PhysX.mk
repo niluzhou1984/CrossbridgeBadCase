@@ -109,10 +109,12 @@ PhysX_release_hpaths    += ./../../PvdRuntime/src
 PhysX_release_hpaths    += ./../../PhysXMetaData/core/include
 PhysX_release_lpaths    := 
 PhysX_release_lpaths    += ./../../../Lib/linux32
+PhysX_release_lpaths    += ./../../../Bin/linux32
 PhysX_release_defines   := $(PhysX_custom_defines)
 PhysX_release_defines   += PX_PHYSX_CORE_EXPORTS
 PhysX_release_defines   += NDEBUG
 PhysX_release_libraries := 
+PhysX_release_libraries += PhysX3Common_x86
 PhysX_release_libraries += LowLevel
 PhysX_release_libraries += LowLevelCloth
 PhysX_release_libraries += PhysXProfileSDK
@@ -126,12 +128,12 @@ PhysX_release_common_cflags    += -MMD
 PhysX_release_common_cflags    += $(addprefix -D, $(PhysX_release_defines))
 PhysX_release_common_cflags    += $(addprefix -I, $(PhysX_release_hpaths))
 PhysX_release_common_cflags  += -m32
-PhysX_release_common_cflags  += -Werror -m32 -fPIC -msse2 -mfpmath=sse -malign-double -ffast-math -fno-exceptions -fno-rtti -fvisibility=hidden -fvisibility-inlines-hidden
+PhysX_release_common_cflags  +=  -m32 -fPIC -msse2 -mfpmath=sse -malign-double -ffast-math -fno-exceptions -fno-rtti -fvisibility=hidden -fvisibility-inlines-hidden
 PhysX_release_common_cflags  += -Wall -Wextra -Wstrict-aliasing=2 -fdiagnostics-show-option
 PhysX_release_common_cflags  += -Wno-long-long
-PhysX_release_common_cflags  += -Wno-unknown-pragmas -Wno-invalid-offsetof -Wno-uninitialized -Wno-attributes -Wno-unused-local-typedefs
-PhysX_release_common_cflags  += -Wno-unused-parameter -Wno-missing-field-initializers -Wno-ignored-qualifiers
-PhysX_release_common_cflags  += -O3 -fno-strict-aliasing
+PhysX_release_common_cflags  += -Wno-unknown-pragmas -Wno-invalid-offsetof -Wno-uninitialized -Wno-attributes 
+PhysX_release_common_cflags  += -Wno-unused-parameter -Wno-missing-field-initializers 
+PhysX_release_common_cflags  += -O3 -fno-strict-aliasing 
 PhysX_release_cflags	:= $(PhysX_release_common_cflags)
 PhysX_release_cppflags	:= $(PhysX_release_common_cflags)
 PhysX_release_lflags    := $(PhysX_custom_lflags)
@@ -145,7 +147,7 @@ PhysX_release_cpp_o    = $(addprefix $(PhysX_release_objsdir)/, $(subst ./, , $(
 PhysX_release_cc_o    = $(addprefix $(PhysX_release_objsdir)/, $(subst ./, , $(subst ../, , $(patsubst %.cc, %.cc.o, $(PhysX_ccfiles)))))
 PhysX_release_c_o      = $(addprefix $(PhysX_release_objsdir)/, $(subst ./, , $(subst ../, , $(patsubst %.c, %.c.o, $(PhysX_cfiles)))))
 PhysX_release_obj      = $(PhysX_release_cpp_o) $(PhysX_release_cc_o) $(PhysX_release_c_o)
-PhysX_release_bin      := ./../../../Bin/linux32/libPhysX3_x86.so
+PhysX_release_bin      := ./../../../lib/linux32/libPhysX3_x86.a
 
 clean_PhysX_release: 
 	@$(ECHO) clean PhysX release
@@ -159,8 +161,10 @@ mainbuild_PhysX_release: prebuild_PhysX_release $(PhysX_release_bin)
 prebuild_PhysX_release:
 
 $(PhysX_release_bin): $(PhysX_release_obj) build_LowLevel_release build_LowLevelCloth_release build_PhysXProfileSDK_release build_PhysXVisualDebuggerSDK_release build_PvdRuntime_release build_PxTask_release build_SceneQuery_release build_SimulationController_release 
-	mkdir -p `dirname ./../../../Bin/linux32/libPhysX3_x86.so`
-	$(CXX) -shared $(PhysX_release_obj) $(PhysX_release_lflags) -lc -o $@ 
+	mkdir -p `dirname ./../../../Bin/linux32/libPhysX3_x86.a`
+	$(ECHO) $(PhysX_release_obj) $(PhysX_release_lflags) $@ 
+	#$(CXX) -shared $(PhysX_release_obj) $(PhysX_release_lflags) -lc -o $@ 
+	@$(AR) rcs $(PhysX_release_bin) $(PhysX_release_obj)
 	$(ECHO) building $@ complete!
 
 PhysX_release_DEPDIR = $(dir $(@))/$(*F)
@@ -258,11 +262,11 @@ PhysX_debug_common_cflags    += -MMD
 PhysX_debug_common_cflags    += $(addprefix -D, $(PhysX_debug_defines))
 PhysX_debug_common_cflags    += $(addprefix -I, $(PhysX_debug_hpaths))
 PhysX_debug_common_cflags  += -m32
-PhysX_debug_common_cflags  += -Werror -m32 -fPIC -msse2 -mfpmath=sse -malign-double -ffast-math -fno-exceptions -fno-rtti -fvisibility=hidden -fvisibility-inlines-hidden
+PhysX_debug_common_cflags  +=  -m32 -fPIC -msse2 -mfpmath=sse -malign-double -ffast-math -fno-exceptions -fno-rtti -fvisibility=hidden -fvisibility-inlines-hidden
 PhysX_debug_common_cflags  += -Wall -Wextra -Wstrict-aliasing=2 -fdiagnostics-show-option
 PhysX_debug_common_cflags  += -Wno-long-long
-PhysX_debug_common_cflags  += -Wno-unknown-pragmas -Wno-invalid-offsetof -Wno-uninitialized -Wno-attributes -Wno-unused-local-typedefs
-PhysX_debug_common_cflags  += -Wno-unused-parameter -Wno-missing-field-initializers -Wno-ignored-qualifiers
+PhysX_debug_common_cflags  += -Wno-unknown-pragmas -Wno-invalid-offsetof -Wno-uninitialized -Wno-attributes 
+PhysX_debug_common_cflags  += -Wno-unused-parameter -Wno-missing-field-initializers 
 PhysX_debug_common_cflags  += -g3 -gdwarf-2
 PhysX_debug_cflags	:= $(PhysX_debug_common_cflags)
 PhysX_debug_cppflags	:= $(PhysX_debug_common_cflags)
@@ -277,7 +281,7 @@ PhysX_debug_cpp_o    = $(addprefix $(PhysX_debug_objsdir)/, $(subst ./, , $(subs
 PhysX_debug_cc_o    = $(addprefix $(PhysX_debug_objsdir)/, $(subst ./, , $(subst ../, , $(patsubst %.cc, %.cc.o, $(PhysX_ccfiles)))))
 PhysX_debug_c_o      = $(addprefix $(PhysX_debug_objsdir)/, $(subst ./, , $(subst ../, , $(patsubst %.c, %.c.o, $(PhysX_cfiles)))))
 PhysX_debug_obj      = $(PhysX_debug_cpp_o) $(PhysX_debug_cc_o) $(PhysX_debug_c_o)
-PhysX_debug_bin      := ./../../../Bin/linux32/libPhysX3DEBUG_x86.so
+PhysX_debug_bin      := ./../../../Bin/linux32/libPhysX3DEBUG_x86.dll
 
 clean_PhysX_debug: 
 	@$(ECHO) clean PhysX debug
@@ -291,7 +295,7 @@ mainbuild_PhysX_debug: prebuild_PhysX_debug $(PhysX_debug_bin)
 prebuild_PhysX_debug:
 
 $(PhysX_debug_bin): $(PhysX_debug_obj) build_LowLevel_debug build_LowLevelCloth_debug build_PhysXProfileSDK_debug build_PhysXVisualDebuggerSDK_debug build_PvdRuntime_debug build_PxTask_debug build_SceneQuery_debug build_SimulationController_debug 
-	mkdir -p `dirname ./../../../Bin/linux32/libPhysX3DEBUG_x86.so`
+	mkdir -p `dirname ./../../../Bin/linux32/libPhysX3DEBUG_x86.dll`
 	$(CXX) -shared $(PhysX_debug_obj) $(PhysX_debug_lflags) -lc -o $@ 
 	$(ECHO) building $@ complete!
 
@@ -389,11 +393,11 @@ PhysX_checked_common_cflags    += -MMD
 PhysX_checked_common_cflags    += $(addprefix -D, $(PhysX_checked_defines))
 PhysX_checked_common_cflags    += $(addprefix -I, $(PhysX_checked_hpaths))
 PhysX_checked_common_cflags  += -m32
-PhysX_checked_common_cflags  += -Werror -m32 -fPIC -msse2 -mfpmath=sse -malign-double -ffast-math -fno-exceptions -fno-rtti -fvisibility=hidden -fvisibility-inlines-hidden
+PhysX_checked_common_cflags  +=  -m32 -fPIC -msse2 -mfpmath=sse -malign-double -ffast-math -fno-exceptions -fno-rtti -fvisibility=hidden -fvisibility-inlines-hidden
 PhysX_checked_common_cflags  += -Wall -Wextra -Wstrict-aliasing=2 -fdiagnostics-show-option
 PhysX_checked_common_cflags  += -Wno-long-long
-PhysX_checked_common_cflags  += -Wno-unknown-pragmas -Wno-invalid-offsetof -Wno-uninitialized -Wno-attributes -Wno-unused-local-typedefs
-PhysX_checked_common_cflags  += -Wno-unused-parameter -Wno-missing-field-initializers -Wno-ignored-qualifiers
+PhysX_checked_common_cflags  += -Wno-unknown-pragmas -Wno-invalid-offsetof -Wno-uninitialized -Wno-attributes 
+PhysX_checked_common_cflags  += -Wno-unused-parameter -Wno-missing-field-initializers 
 PhysX_checked_common_cflags  += -g3 -gdwarf-2 -O3 -fno-strict-aliasing
 PhysX_checked_cflags	:= $(PhysX_checked_common_cflags)
 PhysX_checked_cppflags	:= $(PhysX_checked_common_cflags)
@@ -408,7 +412,7 @@ PhysX_checked_cpp_o    = $(addprefix $(PhysX_checked_objsdir)/, $(subst ./, , $(
 PhysX_checked_cc_o    = $(addprefix $(PhysX_checked_objsdir)/, $(subst ./, , $(subst ../, , $(patsubst %.cc, %.cc.o, $(PhysX_ccfiles)))))
 PhysX_checked_c_o      = $(addprefix $(PhysX_checked_objsdir)/, $(subst ./, , $(subst ../, , $(patsubst %.c, %.c.o, $(PhysX_cfiles)))))
 PhysX_checked_obj      = $(PhysX_checked_cpp_o) $(PhysX_checked_cc_o) $(PhysX_checked_c_o)
-PhysX_checked_bin      := ./../../../Bin/linux32/libPhysX3CHECKED_x86.so
+PhysX_checked_bin      := ./../../../Bin/linux32/libPhysX3CHECKED_x86.dll
 
 clean_PhysX_checked: 
 	@$(ECHO) clean PhysX checked
@@ -422,7 +426,7 @@ mainbuild_PhysX_checked: prebuild_PhysX_checked $(PhysX_checked_bin)
 prebuild_PhysX_checked:
 
 $(PhysX_checked_bin): $(PhysX_checked_obj) build_LowLevel_checked build_LowLevelCloth_checked build_PhysXProfileSDK_checked build_PhysXVisualDebuggerSDK_checked build_PvdRuntime_checked build_PxTask_checked build_SceneQuery_checked build_SimulationController_checked 
-	mkdir -p `dirname ./../../../Bin/linux32/libPhysX3CHECKED_x86.so`
+	mkdir -p `dirname ./../../../Bin/linux32/libPhysX3CHECKED_x86.dll`
 	$(CXX) -shared $(PhysX_checked_obj) $(PhysX_checked_lflags) -lc -o $@ 
 	$(ECHO) building $@ complete!
 
@@ -520,11 +524,11 @@ PhysX_profile_common_cflags    += -MMD
 PhysX_profile_common_cflags    += $(addprefix -D, $(PhysX_profile_defines))
 PhysX_profile_common_cflags    += $(addprefix -I, $(PhysX_profile_hpaths))
 PhysX_profile_common_cflags  += -m32
-PhysX_profile_common_cflags  += -Werror -m32 -fPIC -msse2 -mfpmath=sse -malign-double -ffast-math -fno-exceptions -fno-rtti -fvisibility=hidden -fvisibility-inlines-hidden
+PhysX_profile_common_cflags  +=  -m32 -fPIC -msse2 -mfpmath=sse -malign-double -ffast-math -fno-exceptions -fno-rtti -fvisibility=hidden -fvisibility-inlines-hidden
 PhysX_profile_common_cflags  += -Wall -Wextra -Wstrict-aliasing=2 -fdiagnostics-show-option
 PhysX_profile_common_cflags  += -Wno-long-long
-PhysX_profile_common_cflags  += -Wno-unknown-pragmas -Wno-invalid-offsetof -Wno-uninitialized -Wno-attributes -Wno-unused-local-typedefs
-PhysX_profile_common_cflags  += -Wno-unused-parameter -Wno-missing-field-initializers -Wno-ignored-qualifiers
+PhysX_profile_common_cflags  += -Wno-unknown-pragmas -Wno-invalid-offsetof -Wno-uninitialized -Wno-attributes 
+PhysX_profile_common_cflags  += -Wno-unused-parameter -Wno-missing-field-initializers 
 PhysX_profile_common_cflags  += -O3 -fno-strict-aliasing
 PhysX_profile_cflags	:= $(PhysX_profile_common_cflags)
 PhysX_profile_cppflags	:= $(PhysX_profile_common_cflags)
@@ -539,7 +543,7 @@ PhysX_profile_cpp_o    = $(addprefix $(PhysX_profile_objsdir)/, $(subst ./, , $(
 PhysX_profile_cc_o    = $(addprefix $(PhysX_profile_objsdir)/, $(subst ./, , $(subst ../, , $(patsubst %.cc, %.cc.o, $(PhysX_ccfiles)))))
 PhysX_profile_c_o      = $(addprefix $(PhysX_profile_objsdir)/, $(subst ./, , $(subst ../, , $(patsubst %.c, %.c.o, $(PhysX_cfiles)))))
 PhysX_profile_obj      = $(PhysX_profile_cpp_o) $(PhysX_profile_cc_o) $(PhysX_profile_c_o)
-PhysX_profile_bin      := ./../../../Bin/linux32/libPhysX3PROFILE_x86.so
+PhysX_profile_bin      := ./../../../Bin/linux32/libPhysX3PROFILE_x86.dll
 
 clean_PhysX_profile: 
 	@$(ECHO) clean PhysX profile
@@ -553,7 +557,7 @@ mainbuild_PhysX_profile: prebuild_PhysX_profile $(PhysX_profile_bin)
 prebuild_PhysX_profile:
 
 $(PhysX_profile_bin): $(PhysX_profile_obj) build_LowLevel_profile build_LowLevelCloth_profile build_PhysXProfileSDK_profile build_PhysXVisualDebuggerSDK_profile build_PvdRuntime_profile build_PxTask_profile build_SceneQuery_profile build_SimulationController_profile 
-	mkdir -p `dirname ./../../../Bin/linux32/libPhysX3PROFILE_x86.so`
+	mkdir -p `dirname ./../../../Bin/linux32/libPhysX3PROFILE_x86.dll`
 	$(CXX) -shared $(PhysX_profile_obj) $(PhysX_profile_lflags) -lc -o $@ 
 	$(ECHO) building $@ complete!
 
