@@ -31,7 +31,9 @@
 
 ##Mac的环境搭建
 
-    * [Crossbridge Sdk下载](http://sourceforge.net/projects/crossbridge-community/files/15.0.0/CrossBridge_15.0.0.3.dmg/download) (sdk中包括了编译到avm需要用到的编译工具 库和头文件) 解压到目录**CrossBridgeSDK**(同windows下的cygWinLocal目录，只是mac下不需要装cygwin,压缩包里只包含了crossbridge的sdk).
+    * [Crossbridge Sdk下载](http://sourceforge.net/projects/crossbridge-community/files/15.0.0/CrossBridge_15.0.0.3.dmg/download)          (sdk中包括了编译到avm需要用到的编译工具 库和头文件) 
+    
+    解压到目录**CrossBridgeSDK**(同windows下的cygWinLocal目录，只是mac下不需要装cygwin,压缩包里只包含了crossbridge的sdk).
 
 	我们把路径 CrossBridgeSDK/sdk 称为**SDK_PATH** ,后面的配置文件将会用到这个路径
 	
@@ -120,8 +122,9 @@ FixedCase的_gjkRelativeRayCast代码文件路径
 
 ##Build Test Enviroment For Mac
 
-    * [Download Crossbridge Sdk](http://sourceforge.net/projects/crossbridge-community/files/15.0.0/CrossBridge_15.0.0.3.dmg/download) (All required Tools, libs and header files have been included in the sdk package)
-Decompress SDK package to directory **CrossBridgeSDK** (it's the corresponding directory cygWinLocal for mac, and we can skip the installation of cygwin, just simply decompress crossbridge SDK package to the directory).
+    * [Download Crossbridge Sdk](http://sourceforge.net/projects/crossbridge-community/files/15.0.0/CrossBridge_15.0.0.3.dmg/download)     (All required Tools, libs and header files have been included in the sdk package)
+
+    Decompress SDK package to directory **CrossBridgeSDK** (it's the corresponding directory cygWinLocal for mac, and we can skip the installation of cygwin, just simply decompress crossbridge SDK package to the directory).
 
 	And we will use symbol **SDK_PATH** to denote the path "CrossBridgeSDK/sdk" in following sections.
 	
