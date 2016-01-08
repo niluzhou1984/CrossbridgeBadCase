@@ -1,5 +1,5 @@
 
-   
+#Chinese Edition   
 #Bug描述
 
 [Bug描述](https://github.com/shawn11ZX/crossbridge-bug)
@@ -87,7 +87,7 @@ FixedCase的_gjkRelativeRayCast代码文件路径
 	localDirName\PhysXSDK\Source\GeomUtils\src\gjk\GuGJKRaycastFixed.h
 
 
-
+#English Edition
 
 #Bug Description
 
